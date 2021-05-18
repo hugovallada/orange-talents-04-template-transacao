@@ -30,10 +30,6 @@ public class TransacaoController {
             return ResponseEntity.notFound().build();
         }
 
-        if(!transacoRepository.existsByCartaoIdAndCartaoEmail(idCartao, auth.getClaims().get("email").toString())){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
         var transacoes = transacoRepository.findFirst10ByCartaoIdOrderByEfetivadaEmDesc(idCartao);
 
         var response = transacoes.stream().map(TransacaoResponse::new).collect(Collectors.toList());

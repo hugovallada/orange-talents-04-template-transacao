@@ -11,8 +11,6 @@ public interface TransacoRepository extends JpaRepository<Transacao, String> {
 
     Boolean existsByCartaoId(String cartaoId);
 
-    Boolean existsByCartaoIdAndCartaoEmail(String cartaoId, String email);
-
     List<Transacao> findFirst10ByCartaoIdOrderByEfetivadaEmDesc(String cartaoId);
 
 
