@@ -24,7 +24,7 @@ public class ListenerDeTransacao {
     public void ouvir(EventoDeTransacao eventoDeTransacao){
         Transacao transacao = eventoDeTransacao.toModel();
         transacaoRepository.save(transacao);
-        LOG.info("Transação de id " + eventoDeTransacao.getId()+ " persistida no banco");
+        LOG.info("Transação de id " + eventoDeTransacao.getId()+ " encontrada");
     }
 
 
