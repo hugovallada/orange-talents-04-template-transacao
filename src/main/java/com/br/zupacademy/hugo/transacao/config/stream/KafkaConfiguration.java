@@ -1,9 +1,8 @@
 package com.br.zupacademy.hugo.transacao.config.stream;
 
-import com.br.zupacademy.hugo.transacao.transacao.EventoDeTransacao;
+import com.br.zupacademy.hugo.transacao.transacao.evento.EventoDeTransacao;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,14 +44,14 @@ public class KafkaConfiguration {
     @Bean
     public ConsumerFactory<String, EventoDeTransacao> transacaoConsumerFactory(){
         var stringDeserializer = new StringDeserializer();
-        var jsonDeserializer = new JsonDeserializer<EventoDeTransacao>(EventoDeTransacao.class, false);
+        var jsonDeserializer = new JsonDeserializer<>(EventoDeTransacao.class, false);
 
         return new DefaultKafkaConsumerFactory<>(consumerConfiguration(), stringDeserializer, jsonDeserializer);
     }
 
     /**
      * Cadastra o consumidor em um listener
-     * @return
+     *
      */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, EventoDeTransacao> kafkaListenerContainerFactory(){
